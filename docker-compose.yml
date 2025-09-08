@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  app:
+    build: .
+    container_name: express-sqlite-videos
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/usr/src/app
+      - ./videos.db:/usr/src/app/videos.db
+    environment:
+      - NODE_ENV=production
