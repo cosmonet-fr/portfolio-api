@@ -1,21 +1,24 @@
 const db = require("./config/database");
 
 db.serialize(() => {
-    db.run("DROP TABLE IF EXISTS videos");
-    db.run(`
-    CREATE TABLE videos (
+  db.run("DROP TABLE IF EXISTS audience");
+  db.run(`
+    CREATE TABLE audience (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
+      type TEXT NOT NULL,
+      name TEXT NOT NULL,
       url TEXT NOT NULL,
       counter INTEGER DEFAULT 0
     )
   `);
 
-    const stmt = db.prepare("INSERT INTO videos (url, counter) VALUES (?, ?)");
-    stmt.run("https://example.com/video1", 0);
-    stmt.run("https://example.com/video2", 0);
-    stmt.finalize();
+  const stmt = db.prepare("INSERT INTO audience (type, name, url, counter) VALUES (?, ?, ?, ?)");
+  stmt.run("Vidéo", "Vidéo 40 ans FSF", "https://videos.billois.org/fsf-40.webm", 0);
+  stmt.run("PDF", "CV", "https://www.billois.org/cv_sbillois.pdf", 0);
+  stmt.run("Page web", "Home page", "...", 0);
+  stmt.finalize();
 
-    console.log("Table 'videos' créée avec données initiales.");
+  console.log("Table 'audience' créée avec données initiales.");
 });
 
 db.close();

@@ -1,13 +1,19 @@
-version: "3.9"
-
 services:
   app:
     build: .
-    container_name: express-sqlite-videos
+    container_name: portfolio_api
     ports:
-      - "3000:3000"
+      - "8585:8585"
     volumes:
       - .:/usr/src/app
-      - ./videos.db:/usr/src/app/videos.db
+      - ./audience.db:/usr/src/app/audience.db
     environment:
       - NODE_ENV=production
+
+  sqlite:
+    image: nouchka/sqlite3:latest
+    container_name: sqlite-cli
+    stdin_open: true
+    tty: true
+    volumes:
+      - ./audience.db:/data/audience.db

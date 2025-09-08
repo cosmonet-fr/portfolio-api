@@ -1,10 +1,10 @@
 const express = require("express");
 const app = express();
-const videoRoutes = require("./routes/videoRoutes");
+const audienceRoutes = require("./routes/audienceRoutes");
 
-app.use("/video", videoRoutes);
+app.use("/audience", audienceRoutes);
 
-const PORT = 3000;
+const PORT = 8585;
 app.listen(PORT, () => {
     console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
