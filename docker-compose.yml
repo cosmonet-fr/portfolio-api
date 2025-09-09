@@ -6,6 +6,7 @@ services:
       - "8585:8585"
     volumes:
       - .:/usr/src/app
+      - /usr/src/app/node_modules
       - ./audience.db:/usr/src/app/audience.db
     environment:
       - NODE_ENV=production
