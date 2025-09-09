@@ -10,7 +10,10 @@ exports.getAudience = (req, res) => {
 
         Audience.incrementCounter(id, (err2) => {
             if (err2) return res.status(500).send("Erreur lors de l'incrément.");
-            res.send(resource.url);
+            res.json({
+                name: resource.name,
+                url: resource.url
+            });
         });
     });
 };
