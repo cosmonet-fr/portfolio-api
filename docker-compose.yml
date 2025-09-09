@@ -7,7 +7,7 @@ services:
     volumes:
       - .:/usr/src/app
       - /usr/src/app/node_modules
-      - ./audience.db:/usr/src/app/audience.db
+      - ./data:/usr/src/app/data
     environment:
       - NODE_ENV=production
 
@@ -17,4 +17,4 @@ services:
     stdin_open: true
     tty: true
     volumes:
-      - ./audience.db:/data/audience.db
+      - ./data:/data
