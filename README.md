@@ -1,3 +1,10 @@
+# Docker
+
+```bash
+sudo docker compose build --no-cache
+sudo docker compose up -d
+```
+
 # Gestion de la base dans Docker
 
 ### 1. Initialiser la DB
@@ -5,7 +12,7 @@
 La première fois, exécute le script de création de la table :
 
 ```bash
-docker compose run --rm app node db_init.js
+sudo docker compose run --rm app node db_init.js
 ```
 
 ---
