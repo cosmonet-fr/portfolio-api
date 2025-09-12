@@ -82,3 +82,13 @@ docker compose up -d
 * API dispo sur : [http://localhost:8585/audience](http://localhost:8585/audience)
 * Base dispo via le conteneur `sqlite`
 
+```sh
+curl -X POST http://localhost:8585/contact \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Jean Dupont",
+    "email": "jean.dupont@example.com",
+    "subject": "Test de l’API",
+    "message": "Bonjour, ceci est un test d’envoi via l’API contact."
+  }'
+```

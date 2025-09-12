@@ -30,10 +30,47 @@ exports.getCounter = (req, res) => {
     });
 };
 
-// Liste toutes les ressources
+// Liste toutes les ressources (JSON)
 exports.getAll = (req, res) => {
     Audience.findAll((err, rows) => {
         if (err) return res.status(500).send("Erreur serveur.");
         res.json(rows);
+    });
+};
+
+// Liste toutes les ressources (HTML)
+exports.renderHtmlTable = (req, res) => {
+    Audience.findAll((err, rows) => {
+        if (err) return res.status(500).send("Erreur de lecture DB");
+
+        let html = `
+        <html>
+        <head>
+          <title>Audience</title>
+          <style>
+            body { font-family: Arial, sans-serif; margin: 20px; }
+            table { border-collapse: collapse; width: 100%; }
+            th, td { border: 1px solid #ddd; padding: 8px; }
+            th { background: #f4f4f4; }
+          </style>
+        </head>
+        <body>
+          <h1>Liste Audience</h1>
+          <table>
+            <tr><th>ID</th><th>Type</th><th>Name</th><th>URL</th><th>Counter</th></tr>
+        `;
+
+        rows.forEach(row => {
+            html += `<tr>
+              <td>${row.id}</td>
+              <td>${row.type}</td>
+              <td>${row.name}</td>
+              <td><a href="${row.url}" target="_blank">${row.url}</a></td>
+              <td>${row.counter}</td>
+            </tr>`;
+        });
+
+        html += `</table></body></html>`;
+        res.send(html);
     });
 };
